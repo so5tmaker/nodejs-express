@@ -29,6 +29,16 @@ const middleware = (req, res, next) => {
 app.get('/now', middleware, (req, res) => {
     res.json({ time: req.time });
 })
+
+app.get('/:word/echo', (req, res) => {
+    const { word } = req.params;
+    res.json({ echo: word });
+})
+
+app.get('/name', (req, res) => {
+    const { firstname, lastname } = req.query;
+    res.send({ name: `${firstname} ${lastname}` });
+});
 // console.log(__dirname + '/public');
 // console.log(path.join(__dirname, 'public'));
 
