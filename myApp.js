@@ -5,7 +5,8 @@ let app = express();
 
 require('dotenv').config();
 
-app.use(bodyParser);
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // const { MESSAGE_STYLE } = procces.env;
 
@@ -41,6 +42,12 @@ app.get('/:word/echo', (req, res) => {
 app.get('/name', (req, res) => {
     const { firstname, lastname } = req.query;
     res.send({ name: `${firstname} ${lastname}` });
+});
+
+app.post('/name', (req, res) => {
+    const { first, last } = req.body;
+    console.log({ name: `${first} ${last}` });
+    res.send({ name: `${first} ${last}` });
 });
 // console.log(__dirname + '/public');
 // console.log(path.join(__dirname, 'public'));
